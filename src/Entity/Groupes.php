@@ -82,17 +82,17 @@ class Groupes
     }
 
     /**
-     * @return Collection<int, Users>
+     * @return Collection<int, User>
      */
-    public function getUsers(): Collection
+    public function getUser(): Collection
     {
-        return $this->users;
+        return $this->user;
     }
 
     public function addUser(User $user): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
             $user->setGroupes($this);
         }
         return $this;
@@ -100,7 +100,7 @@ class Groupes
 
     public function removeUser(User $user): self
     {
-        if ($this->users->removeElement($user)) {
+        if ($this->user->removeElement($user)) {
             // set the owning side to null (unless already changed)
             if ($user->getGroupes() === $this) {
                 $user->setGroupes(null);

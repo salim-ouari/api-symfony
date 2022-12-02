@@ -80,4 +80,32 @@ class Groupes
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Users>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setGroupes($this);
+        }
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getGroupes() === $this) {
+                $user->setGroupes(null);
+            }
+        }
+        return $this;
+    }
 }
